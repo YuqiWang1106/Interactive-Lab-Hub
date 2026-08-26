@@ -6,6 +6,7 @@ _This project is to be done in teams of 2._
 **Yuqi Wang**
 
 **THE MASTERWORK YOU DREW FROM THE HAT:**
+Philips Wake-Up Light (A lamp that simulates dawn to wake you gently before the alarm).
 
 ---
 
