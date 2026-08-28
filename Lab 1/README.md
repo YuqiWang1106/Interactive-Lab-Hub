@@ -112,16 +112,17 @@ and the people around it. If you're new to storyboarding, read
 
 ## Part B. Act out the Interaction
 
-Physically act out the interaction you planned. For now, just pretend the light
-is doing what you've scripted — a person can wave a flashlight, or you can narrate
-it aloud.
-
 **Are there things that seemed better on paper than when acted out?**
+
+Yes. On the storyboard, the transition from dark to bright looked very clear, but when we acted it out, some of the brightness changes were too small to notice. We realized that the difference between each stage needs to be more visible, especially when recording it with a camera. We also found that waking up immediately when the light became bright felt unnatural, so the user's reaction should be slower.
 
 **Did new ideas about the piece surface once you were on your feet?**
 
+We realized that the timing between the light and the person's reaction is really important. Instead of only controlling the brightness, we want to coordinate the light with small actions such as turning over, moving slightly, opening the eyes, and finally sitting up. This makes the interaction feel more like a gradual waking process rather than simply turning on a lamp.
+
 **Are there key moments in the interaction where things could go in a different direction?**
-Iterate your storyboards to capture key non-sequential aspects of the interaction. 
+
+One key moment is when the user first notices the light. The user might continue sleeping, start waking up, or wake up earlier than the planned alarm time. We also noticed that if the light becomes bright too quickly, it loses the feeling of a sunrise and starts to feel like a normal lamp being switched on. These possibilities made us think more carefully about the speed and timing of the light transition.
 
 ## Part C. Prototype the Light (light first!)
 
