@@ -92,16 +92,14 @@ The core interaction I would recognize is very simple: a person is sleeping in a
 
 ## Part A. Plan
 
-For your masterwork, reconstruct the interaction as a scene:
+**Setting:** A bedroom in the early morning, shortly before the user is supposed to wake up. The room starts dark and quiet so the gradual change in light can clearly feel like a sunrise.
 
-- **Setting:** Where and when does this interaction happen? (a jungle, a kitchen,
-  a spaceship corridor, a nightclub, a harbor at night)
-- **Players:** Who is involved? Who else is present? Think through everyone in
-  the setting, not just the primary user.
-- **Activity:** What is happening between the players and the light?
-- **Goals:** What is each player trying to do?
+**Players:** Me and Jerry. One of us acts as the sleeping user, while the other stays outside the scene and secretly controls the Wake-Up Light. The light itself also acts like a player because it changes the environment and causes the sleeping person to react.
 
-**Describe your setting, players, activity, and goals here.**
+**Activity:** The user starts out sleeping while the room is dark. As the wake-up time gets closer, the light slowly becomes brighter. The sleeping user gradually reacts by moving, opening their eyes, and eventually waking up.
+
+**Goals:** The sleeping user wants to wake up naturally instead of being suddenly interrupted by an alarm. The hidden controller wants to make the change in light feel smooth and automatic. Our overall goal is to recreate the sunrise effect clearly enough that someone watching can understand the main idea of the Philips Wake-Up Light.
+
 
 Now **sketch a 3 storyboards** of the interaction you are recreating. (The number may depend on the thing you drew, but stretch your thinking!) They
 don't need to be beautiful, but they must capture and communicate not only the behavior of the light, but how it affects
