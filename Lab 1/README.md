@@ -106,11 +106,9 @@ don't need to be beautiful, but they must capture and communicate not only the b
 and the people around it. If you're new to storyboarding, read
 [this explanation](https://www.nngroup.com/articles/storyboards-visualize-ideas/).
 
-**Include pictures of your storyboards here.**
+![Philips Wake-Up Light Storyboards](./story_board.png)
 
-Use the storyboards to decide what interaction to prototype.
-
-**Summarize the feedback you got here.**
+**Feedback:** After showing our storyboards to classmates, one suggestion was to make the change in brightness more obvious between each stage, since some of the middle frames looked too similar. Another point was that the user's reaction should happen gradually as well, instead of going directly from sleeping to fully awake. We also discussed keeping the scene simple and focusing on the relationship between the changing light and the person's waking process, rather than adding too many extra features such as sound or alarm controls. Based on this feedback, we decided to emphasize both the gradual increase in light and the user's gradual reaction in our prototype.
 
 ## Part B. Act out the Interaction
 
