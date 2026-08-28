@@ -81,18 +81,14 @@ page.
 
 ## Part 0. Know Your Master
 
-Before you prototype anything, get intimately acquainted with the piece you
-drew. Do real research. You are looking less for trivia than for the *shape of
-the interaction*:
+The Philips Wake-Up Light is an alarm clock designed to make waking up feel more natural. Instead of suddenly waking the user with a loud alarm, it slowly increases the brightness of the light before the set wake-up time, similar to a sunrise. The main input from the user is setting the wake-up time, and depending on the model, the user can also adjust things like brightness and alarm sound. The main response from the device is the gradual change in light, followed by sound at the wake-up time.
 
-- What inputs are available to the user? What responses does the work give?
-- Who is present, and how does the piece color the relationships between them?
-- What is the piece famous for? What are its strengths and its weaknesses?
+The interaction mostly happens between one person and the light in a bedroom. What I find interesting is that the user does not really need to actively interact with the device while it is working. They are usually asleep. The light changes the environment around them first, and the person gradually responds by becoming more awake. This makes the interaction feel less like a normal alarm and more like the device is changing the room around the user.
 
-  Sometimes the details of how the interaction worked are lost in history. Try filling it in with your imagination!
+The Wake-Up Light is mainly known for simulating a sunrise. Its biggest strength is that the change happens gradually instead of all at once, which can make waking up feel less abrupt. One weakness is that the experience depends a lot on the environment and the person. For example, if the room is already bright or the user is a very heavy sleeper, the light may not be enough by itself.
 
-**Describe your masterwork here, in your own words. What is the core interaction
-someone would recognize it by?**
+The core interaction I would recognize is very simple: a person is sleeping in a dark room, the light slowly becomes brighter as the wake-up time gets closer, and the person gradually wakes up. The gradual transition from darkness to light, rather than just turning the light on, is what makes the Philips Wake-Up Light recognizable.
+
 
 ## Part A. Plan
 
