@@ -101,10 +101,6 @@ The core interaction I would recognize is very simple: a person is sleeping in a
 **Goals:** The sleeping user wants to wake up naturally instead of being suddenly interrupted by an alarm. The hidden controller wants to make the change in light feel smooth and automatic. Our overall goal is to recreate the sunrise effect clearly enough that someone watching can understand the main idea of the Philips Wake-Up Light.
 
 
-Now **sketch a 3 storyboards** of the interaction you are recreating. (The number may depend on the thing you drew, but stretch your thinking!) They
-don't need to be beautiful, but they must capture and communicate not only the behavior of the light, but how it affects
-and the people around it. If you're new to storyboarding, read
-[this explanation](https://www.nngroup.com/articles/storyboards-visualize-ideas/).
 
 ![Philips Wake-Up Light Storyboards](./story_board.png)
 
@@ -164,16 +160,8 @@ and calm for a bedroom?
 **What concerns or opportunities shaped the way you designed its look?**
 
 ## Part F. Record
-
-**Record your prototyped interaction as a video sketch.** Aim for the bar from
-the top of this lab: a viewer who knows the piece should recognize it; a viewer
-who doesn't should come away understanding what it's famous for. How might you illustrate the non-sequential aspects of the interaction in the sketch?
-
-**Include your video here.**
-
-**Please indicate who you collaborated with on this lab.** Be generous in
-acknowledging their contributions, and credit any other influences (YouTube,
-Github, Twitter, a friend who lent you a lamp) that informed your recreation.
+Teammate: Jerry Lee 
+[▶️ Watch the demo video](./Lab1A.mp4)
 
 ---
 
