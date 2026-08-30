@@ -161,7 +161,10 @@ and calm for a bedroom?
 
 ## Part F. Record
 Teammate: Jerry Lee 
-[▶️ Watch the demo video](./Lab1A.mp4)
+
+https://github.com/user-attachments/assets/89f394a9-21f0-4a62-81c1-6d1c789890c3
+
+
 
 ---
 
