@@ -177,6 +177,10 @@ https://github.com/user-attachments/assets/89f394a9-21f0-4a62-81c1-6d1c789890c3
 Group 1: https://github.com/LaboriouslyExquisite/Interactive-Lab-Hub/tree/Fall2026/Lab%201
 The feedback was generally positive. They correctly understood that our project recreated the Philips Wake-Up Light, which gradually increases light to simulate sunrise and create a more natural waking experience. They liked the detailed storyboards and thought the video successfully demonstrated the gradual waking interaction. However, they found the red light unclear and suggested making the light brighter or improving the appearance of the device so the interaction would be easier to understand.
 
+Group 2: https://github.com/pp555-prog/Interactive-Lab-Hub/tree/Fall2026/Lab%201
+The feedback showed that they understood the project as a device that uses changes in light to create a sense of connection between two people. They liked how the interaction allowed the characters to communicate without directly talking and thought the use of light was subtle and interesting. However, they felt that the meaning of the different light changes was not completely clear and suggested making each light state more distinct so the interaction would be easier to understand.
+
+
 **Who were the other groups you kibitzed with? Add links to their project pages here.**
 **Summarize the feedback you got from your partners here.**
 
