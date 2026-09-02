@@ -174,13 +174,15 @@ https://github.com/user-attachments/assets/89f394a9-21f0-4a62-81c1-6d1c789890c3
 
 ## Prep (before the next lab)
 
-Find three other groups. (How? Maybe Slack?) Visit their Lab Hub pages, watch their
-videos, and give them reactions and feedback: tell them what you saw happening,
-guess the masterwork and the goals of the characters, and ask about anything that
-wasn't clear.
+Group 1: https://github.com/LaboriouslyExquisite/Interactive-Lab-Hub/tree/Fall2026/Lab%201
+The feedback was generally positive. They correctly understood that our project recreated the Philips Wake-Up Light, which gradually increases light to simulate sunrise and create a more natural waking experience. They liked the detailed storyboards and thought the video successfully demonstrated the gradual waking interaction. However, they found the red light unclear and suggested making the light brighter or improving the appearance of the device so the interaction would be easier to understand.
 
 **Who were the other groups you kibitzed with? Add links to their project pages here.**
 **Summarize the feedback you got from your partners here.**
+
+
+
+Great job thinking through the user experience and making sure the wake up is gradual. The adjusted brightness based on user movement was a creative idea. Only minor additions I would consider: adding noises (which can be done through the tinkerbelle wizard), possibly bird chirps or other morning sounds, and color adjustment, simulating the red-to-white sunlight colors of dawn.
 
 ## Remix, Update, or Critique the Master
 
