@@ -143,7 +143,9 @@ another acts with it — this is how you make the device feel alive without
 building any real electronics. (Zoom works well for recording; you can pin the
 video feed of whichever scene you want to capture.)
 
-**Include your first attempts at recording the wizarded set-up here.**
+https://github.com/user-attachments/assets/838939a2-527e-44b9-bc78-f80a79c37c06
+
+
 
 ## Part E. (optional) Costume the Device
 
@@ -203,8 +205,13 @@ combine them):
 We will grade this second pass with an emphasis on **creativity** and on how well
 your response engages with what your master was really doing.
 
-**Document everything here — especially the storyboard and video. Photos of the
-prototype are great too.**
+![Philips Wake-Up Light Storyboards](./revised_storyboard.png)
+
+
+https://github.com/user-attachments/assets/936d56fb-992e-4d70-896c-b7b5c8124ff2
+
+
+
 
 ---
 
