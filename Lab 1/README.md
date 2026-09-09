@@ -181,12 +181,9 @@ Group 2: https://github.com/pp555-prog/Interactive-Lab-Hub/tree/Fall2026/Lab%201
 The feedback showed that they understood the project as a device that uses changes in light to create a sense of connection between two people. They liked how the interaction allowed the characters to communicate without directly talking and thought the use of light was subtle and interesting. However, they felt that the meaning of the different light changes was not completely clear and suggested making each light state more distinct so the interaction would be easier to understand.
 
 
-**Who were the other groups you kibitzed with? Add links to their project pages here.**
-**Summarize the feedback you got from your partners here.**
+Group 3: https://github.com/stephen4513/Interactive-Lab-Hub/tree/Fall2026/Lab%201
+The project clearly communicates the gradual sunrise interaction and considers different user responses. Strong ideas include adjusting brightness based on movement. Possible improvements are shortening the video and adding morning sounds or red-to-white color changes to make the experience more realistic.
 
-
-
-Great job thinking through the user experience and making sure the wake up is gradual. The adjusted brightness based on user movement was a creative idea. Only minor additions I would consider: adding noises (which can be done through the tinkerbelle wizard), possibly bird chirps or other morning sounds, and color adjustment, simulating the red-to-white sunlight colors of dawn.
 
 ## Remix, Update, or Critique the Master
 
