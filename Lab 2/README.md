@@ -193,6 +193,8 @@ We strongly discourage literal digital or analog clock display: Be creative.
 
 
 ** Insert ideas, sketches, [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf)), storyboards for your ideas **
+Idea: Time Garden represents focused time through the growth of a plant. During a 25-minute session, a seed gradually sprouts, grows leaves, and blooms. Button A starts, pauses, or resumes the session, while Button B switches between the current plant and today’s garden. Each completed session adds one flower to the garden. Instead of emphasizing a numerical countdown, the design makes the passage of time visible through growth and accumulated flowers.
+
 
 
 
