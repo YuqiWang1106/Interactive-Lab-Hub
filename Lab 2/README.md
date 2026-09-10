@@ -156,9 +156,9 @@ You can look in `screen_boot_script.py` for how to display text on the screen!
 
 You can look in `image.py` for an example of how to display an image on the screen. Can you make it switch to another image when you push one of the buttons?
 
-![p1](./p1.png)
-![p2](./p2.png)
-![p3](./p3.png)
+![p1](./p1-1.png)
+![p2](./p2-2.png)
+![p3](./p3-3.png)
 
 
 
