@@ -197,7 +197,9 @@ Idea: Time Garden represents focused time through the growth of a plant. During 
 ![storyboard](./storyboard.png)
 
 
-**Put the names of the people you gave feedback to here. (Even better, add links to their repos here!)**
+Jerry Lee: I really like the idea the Time Garden showcases because it makes the passage of time feel more rewarding instead of a looking at a typical clock. The plant's growth gives clear feedback on progress, and adding a flower after each completed session is a nice way to motivate the user. I also think the two-button controls is simple to understand. I could say you could improve this by adding an animation or message when a flower blooms to make going through a session feel more satisfying.
+
+https://github.com/JJL4/Interactive-Lab-Hub/tree/Fall2026/Lab%202
 
 # Lab 2 Part 2
 
