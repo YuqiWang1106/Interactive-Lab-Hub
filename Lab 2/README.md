@@ -208,7 +208,14 @@ https://github.com/JJL4/Interactive-Lab-Hub/tree/Fall2026/Lab%202
 1. Pick up remaining parts for kit on Wednesday lab class. Check the updated [parts list inventory](partslist.md) and let the TA know if there is any part missing.
 
 2. Look at and give feedback on the Part E. for at least 3 other people in the class and get 3 people to comment on your Part E!)
-**Put the feedback for your ideas here.**
+
+People1: I think the visual part of your idea is really interesting and makes the interaction more engaging. It would be nice if the display changed more clearly over time so users can easily see their progress. Maybe you could also add a small animation when the interaction is completed.
+
+People2: I like how your idea makes the clock more interactive instead of just showing the time. The main interaction is easy to understand. One thing you could improve is making the feedback after each action more obvious, so the user can immediately tell what happened.
+
+People3: I like that the controls are simple and do not require too many buttons. The interaction feels easy to learn. One suggestion is to make the different button functions more clear on the screen, especially for someone using it for the first time.
+
+
 
 ## Update your Lab Hub
 
@@ -241,10 +248,15 @@ Do take advantage of having done the previous iteration to refine and simplify y
 For Part 2, I want to keep the main idea of Time Garden but make the interaction more clear and rewarding. The clock will still use plant growth to represent a focus session. As time passes, the plant will move through different growth stages. When the session is completed, the flower will bloom and a short completion message or animation will appear on the screen. I also want to keep the controls simple, with Button A used to start, pause, and resume the session, and Button B used to switch between the current session and today’s garden.
 
 
+The code file is called "time_garden.py".
 
-\*\*\***Put a copy of your code in your Lab 2 Github repo.**\*\*\*
 
-\*\*\***Take a video of your PiClock.**\*\*\*
+
+https://github.com/user-attachments/assets/742015b6-98f8-4efb-8e51-04f247a76084
+
+
+
+
 
 
 As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
