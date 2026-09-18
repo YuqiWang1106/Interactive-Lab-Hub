@@ -238,7 +238,8 @@ After that, Git will ask you to login to your GitHub account to push the updates
 
 Do take advantage of having done the previous iteration to refine and simplify your design.
 
-** Insert any updates ideas, sketches, [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf))!, storyboards for your ideas **
+For Part 2, I want to keep the main idea of Time Garden but make the interaction more clear and rewarding. The clock will still use plant growth to represent a focus session. As time passes, the plant will move through different growth stages. When the session is completed, the flower will bloom and a short completion message or animation will appear on the screen. I also want to keep the controls simple, with Button A used to start, pause, and resume the session, and Button B used to switch between the current session and today’s garden.
+
 
 
 \*\*\***Put a copy of your code in your Lab 2 Github repo.**\*\*\*
