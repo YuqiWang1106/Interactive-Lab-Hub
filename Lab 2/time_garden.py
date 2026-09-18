@@ -20,8 +20,6 @@ For a real 25-minute Pomodoro-style session, change:
 """
 
 import time
-from datetime import datetime
-
 import board
 import digitalio
 from PIL import Image, ImageDraw, ImageFont
@@ -55,7 +53,7 @@ POT = (180, 120, 80)
 # Display setup
 # ---------------------------------------------------------
 
-cs_pin = digitalio.DigitalInOut(board.CE0)
+cs_pin = digitalio.DigitalInOut(board.D5)  # GPIO5 (pin 29), matches course Pi 5 wiring
 dc_pin = digitalio.DigitalInOut(board.D25)
 reset_pin = None
 
@@ -74,8 +72,7 @@ display = st7789.ST7789(
 )
 
 backlight = digitalio.DigitalInOut(board.D22)
-backlight.switch_to_output()
-backlight.value = True
+backlight.switch_to_output(value=True)
 
 
 # ---------------------------------------------------------
@@ -85,23 +82,17 @@ backlight.value = True
 button_a = digitalio.DigitalInOut(board.D23)
 button_b = digitalio.DigitalInOut(board.D24)
 
-button_a.switch_to_input()
-button_b.switch_to_input()
+button_a.switch_to_input(pull=digitalio.Pull.UP)
+button_b.switch_to_input(pull=digitalio.Pull.UP)
 
-# We record the normal button state when the program starts.
-# This makes the code work whether the board reports an
-# unpressed button as True or False.
-time.sleep(0.2)
-BUTTON_A_IDLE = button_a.value
-BUTTON_B_IDLE = button_b.value
-
-
+# Buttons use internal pull-ups, so they are active-LOW:
+# True = not pressed, False = pressed.
 def button_a_pressed():
-    return button_a.value != BUTTON_A_IDLE
+    return button_a.value == False
 
 
 def button_b_pressed():
-    return button_b.value != BUTTON_B_IDLE
+    return button_b.value == False
 
 
 # ---------------------------------------------------------
