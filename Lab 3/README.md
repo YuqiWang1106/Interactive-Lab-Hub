@@ -129,7 +129,17 @@ The transcript is not the interesting output here — the timings are. Run it ag
 
 Available sizes, smallest first: `tiny.en`, `base.en`, `small.en`, `medium.en`. The `.en` variants are English-only and faster than their multilingual counterparts at the same size.
 
-\*\***Record a few seconds of your own speech (`arecord -d 5 -f cd -c 1 -r 16000 test.wav`) and transcribe it with at least two model sizes. Report the real-time factor for each. At what point does the accuracy improvement stop being worth the delay, for a system that has to answer you?**\*\*
+### Speech-to-Text Model Comparison
+
+| Model | Audio Duration | Model Load | Transcription Time | Real-Time Factor | Transcription |
+|---|---:|---:|---:|---:|---|
+| `tiny.en` | 5.00 s | 1.64 s | 1.35 s | **0.27x** | Hello, my name is Dave and I'm testing speech recognition. |
+| `base.en` | 5.00 s | 2.37 s | 2.29 s | **0.46x** | Hello my name is Dave and I'm testing speech recognition. |
+| `small.en` | 5.00 s | 6.46 s | 6.17 s | **1.23x** | Hello, my name is Dave and I'm testing speech recognition. |
+
+All three models produced essentially the same correct transcription, but their response times were very different. `tiny.en` was the fastest with a real-time factor of **0.27x**, while `base.en` increased to **0.46x** without a noticeable improvement in accuracy. `small.en` was much slower at **1.23x**, meaning that transcribing five seconds of audio took longer than the audio itself.
+
+For a conversational system that needs to respond quickly, the additional delay of `small.en` is not worth it for this example because it did not provide any noticeable accuracy improvement. Based on this test, I would prefer `tiny.en` for responsiveness, or `base.en` if slightly more recognition capacity is needed while still keeping the latency reasonably low.
 
 \*\***Write your own script that verbally asks for a numerical input (a phone number, zipcode, number of pets) and records the answer the respondent provides.**\*\* Numbers are a good stress test — transcription systems make characteristic errors on digit strings, and you will want to know what they are before you design around them.
 
