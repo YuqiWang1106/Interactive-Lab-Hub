@@ -141,7 +141,22 @@ All three models produced essentially the same correct transcription, but their 
 
 For a conversational system that needs to respond quickly, the additional delay of `small.en` is not worth it for this example because it did not provide any noticeable accuracy improvement. Based on this test, I would prefer `tiny.en` for responsiveness, or `base.en` if slightly more recognition capacity is needed while still keeping the latency reasonably low.
 
-\*\***Write your own script that verbally asks for a numerical input (a phone number, zipcode, number of pets) and records the answer the respondent provides.**\*\* Numbers are a good stress test — transcription systems make characteristic errors on digit strings, and you will want to know what they are before you design around them.
+### Numerical Input Test
+
+I wrote a script that verbally asks the user for their ZIP code using Festival, records the response for five seconds, and saves it as an audio file.
+
+For my test, I answered:
+
+`10044`
+
+| Model | Transcription | Real-Time Factor | Result |
+|---|---|---:|---|
+| `tiny.en` | `1 0 0 4 4` | **0.18x** | Correct |
+| `base.en` | `Go in 0044.` | **0.36x** | Incorrect |
+
+The `tiny.en` model correctly recognized all five digits, although it formatted them as separate numbers. In contrast, `base.en` incorrectly interpreted the beginning of the ZIP code as words and produced “Go in 0044.”
+
+This test showed that a larger speech-recognition model does not necessarily perform better on numerical input. Digit sequences can be ambiguous because the model may interpret similar sounds as words instead of individual numbers. For applications that require exact numerical input, such as ZIP codes or phone numbers, I would add confirmation or validation rather than relying on a single transcription.
 
 ## C. Turn-taking: knowing when someone has stopped talking
 
