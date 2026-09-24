@@ -204,10 +204,48 @@ Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stu
 
 Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses.
 
-\*\***Please describe and document your process.**\*\*
+## Process Description
 
-Your script should include the pauses. Where does your device wait, and for how long? You now know from Part C that this is a parameter you have to choose, not something that happens for free.
+I started by thinking about a situation where a voice interface would be more useful than a screen-based interaction. I wanted the device to support a simple task that could be completed through a short conversation, so I designed **Focus Buddy**, a desktop voice assistant that helps a user begin a focused work session.
 
+The interaction is intentionally narrow. Instead of allowing an open-ended conversation, the device asks the user three questions: what they want to work on, how long they want to focus, and whether they are ready to begin. This keeps the interaction predictable and prevents the voice assistant itself from becoming another distraction.
+
+I also designed the timing based on what I observed in Part C. A `0.2s` silence threshold often cut off normal pauses, while `1.5s` made the system feel noticeably slow. I therefore chose **0.7 seconds of silence** as the endpointing threshold. This gives the user enough time to pause briefly while thinking, but still allows the system to respond quickly after the user finishes speaking.
+
+I also added a separate **4-second no-response timeout**. This is different from the 0.7-second endpointing threshold. The 0.7-second threshold determines when the system decides that the user has finished an utterance, while the 4-second timeout determines how long the device waits when the user has not started answering at all.
+
+If the user does not respond within four seconds, the device gives one short follow-up prompt. If there is still no response after another four seconds, the interaction ends instead of repeatedly interrupting the user.
+
+The main design goal was to make the conversation feel short, calm, and responsive. The device helps the user move from hesitation to a concrete task and time commitment, then stops talking so the user can begin working.
+
+
+
+## Dialogue Script with Pauses
+
+| Step | Speaker | Utterance / Action | Pause / Timing |
+|---|---|---|---|
+| 1 | User | “Focus Buddy.” | — |
+| 2 | Device | “What do you want to work on?” | Wait for user speech |
+| 3 | User | “I need to finish my machine learning homework.” | Device ends the turn after **0.7 s of silence** |
+| 4 | Device | “Got it. How long do you want to focus?” | Wait for user speech |
+| 5 | User | “Twenty-five minutes.” | Device ends the turn after **0.7 s of silence** |
+| 6 | Device | “Twenty-five minutes on your machine learning homework. Ready to start?” | Wait for user speech |
+| 7 | User | “Yes.” | Device ends the turn after **0.7 s of silence** |
+| 8 | Device | “Great. Start now. I’ll stay out of your way.” | Conversation ends |
+
+### No-response behavior
+
+If the user does not begin answering within **4 seconds**, the device says:
+
+> “Take your time. You can answer whenever you’re ready.”
+
+The device then waits another **4 seconds**. If the user still does not respond, it ends the interaction and returns to its idle state.
+
+### Timing Decisions
+
+- **0.7 s endpointing threshold:** used to decide when the user has finished speaking.
+- **4 s no-response timeout:** used when the user has not started speaking at all.
+- The shorter threshold keeps the conversation responsive, while the longer timeout gives the user enough time to think before the device interrupts.
 ## E. Acting out the dialogue
 
 Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing. Please record this interaction (for example, using Zoom's record feature).
