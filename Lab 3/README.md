@@ -176,7 +176,15 @@ Speak, pause, and watch it transcribe. Now change the endpointing threshold — 
 (.venv) $ python listen.py --min-silence 1.5
 ```
 
-\*\***Try both extremes, and something in between. Describe what each one feels like to talk to. Note specifically: at 0.2s, what kinds of normal speech get cut off? At 1.5s, what does the delay make the system seem like?**\*\*
+### Turn-Taking Threshold Comparison
+
+| Minimum Silence | What It Felt Like |
+|---|---|
+| `0.2s` | The system responded very quickly, but it was too sensitive to short pauses. Normal hesitations, pauses between phrases, or taking a quick breath could be treated as the end of my turn, which caused one sentence to be split into multiple utterances. |
+| `0.7s` | This felt the most natural. It allowed short pauses without interrupting me, while still responding quickly enough after I finished speaking. |
+| `1.5s` | The system waited noticeably after I had already finished speaking. The delay made it feel slow and slightly uncertain, as if it was not sure whether I was done talking. |
+
+At `0.2s`, normal conversational pauses such as hesitation, thinking briefly between phrases, or taking a breath were often cut off. At `1.5s`, the system felt less responsive because there was a noticeable delay before it reacted. For normal conversation, a middle value such as `0.7s` felt like a better balance between avoiding interruptions and responding quickly.
 
 There is no correct value. A system that takes drink orders and a system that listens to someone think out loud want very different thresholds, and the right one depends on what your users are doing with their pauses.
 
