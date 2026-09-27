@@ -300,7 +300,8 @@ The device then waits another **4 seconds**. If the user still does not respond,
 ## E. Acting out the dialogue
 
 
-![Yuqi's Record](./Yuqi‘s_Record.m4a)
+https://github.com/user-attachments/assets/4c343ec8-a82f-4218-b551-ea6107e6b687
+
 
 Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing. Please record this interaction (for example, using Zoom's record feature).
 
