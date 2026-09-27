@@ -233,9 +233,9 @@ back to the user.
 **Focus Buddy:**  
 “Hi! What do you want to work on today?”
 
-*Focus Buddy waits for the user to begin speaking. If the user begins
-speaking, the system considers the turn complete after 0.7 seconds of
-silence.*
+*Focus Buddy waits up to 4 seconds for the user to begin speaking.
+After the user starts speaking, the system considers the turn complete
+after 0.7 seconds of silence.*
 
 **User:**  
 “I need to finish my machine learning homework.”
@@ -243,15 +243,22 @@ silence.*
 **Focus Buddy:**  
 “Got it. How long do you want to focus?”
 
-*Focus Buddy waits for the next response and again uses 0.7 seconds of
-silence to determine when the user has finished speaking.*
+*Focus Buddy again waits up to 4 seconds for the user to begin speaking
+and uses 0.7 seconds of silence to determine when the user has finished.*
 
 **User:**  
 “Twenty-five minutes.”
 
 **Focus Buddy:**  
-“Great. I’ll set a twenty-five-minute focus session for your machine
-learning homework. Start now. I’ll stay out of your way.”
+“Twenty-five minutes on your machine learning homework. Ready to start?”
+
+*Focus Buddy waits for confirmation.*
+
+**User:**  
+“Yes.”
+
+**Focus Buddy:**  
+“Great. Start now. I’ll stay out of your way.”
 
 *The conversation ends, and the user begins working.*
 
