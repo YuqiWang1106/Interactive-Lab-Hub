@@ -207,7 +207,7 @@ on and how long they want to focus.
 
 ### Storyboard
 
-![Focus Buddy Storyboard](/focus_buddy_storyboard.png)
+![Focus Buddy Storyboard](./focus_buddy_storyboard.png)
 
 The storyboard shows the interaction from the user's perspective. The
 user begins in a distracted state, activates Focus Buddy, identifies a
@@ -216,7 +216,7 @@ confirms the plan.
 
 ### System Diagram
 
-![Focus Buddy System Diagram](/focus_buddy_system_diagram.png)
+![Focus Buddy System Diagram](./focus_buddy_system_diagram.png)
 
 The system diagram shows how the Raspberry Pi processes each user turn.
 The microphone captures the user's speech, Voice Activity Detection
