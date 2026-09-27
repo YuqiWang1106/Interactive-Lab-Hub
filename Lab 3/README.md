@@ -301,7 +301,13 @@ The device then waits another **4 seconds**. If the user still does not respond,
 
 Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing. Please record this interaction (for example, using Zoom's record feature).
 
-\*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
+The acted-out dialogue followed the same overall structure I had imagined: the device asked for a task, asked for a duration, and then confirmed whether the user was ready to begin. However, the real interaction was less clean and predictable than my scripted version.
+
+The participant hesitated and repeated “I guess I want” before describing the task. The task itself was also less specific than the answer in my original dialogue. My original design assumed that the user would immediately provide one clear task, such as “I need to finish my machine learning homework.” In the acted interaction, Focus Buddy should probably have asked a clarification question, such as “What subject would you like to study?” Instead, I continued to the duration question, which caused the final confirmation to use the generic phrase “your task” rather than repeating a meaningful task name.
+
+The duration question worked as expected because the participant gave a clear answer of thirty minutes. The final confirmation was also different from my imagined dialogue. Rather than simply saying “Yes,” the participant said, “Okay, please start.” This suggests that the system should recognize several natural forms of confirmation, including “yes,” “okay,” “sure,” and “please start.”
+
+The participant answered every prompt, so the four-second no-response behavior was not triggered. Because I acted as the device manually, the 0.7-second endpointing threshold was approximated rather than measured by the system. Overall, the basic conversation flow worked, but the test showed that the redesigned version should better handle hesitation, repeated words, vague task descriptions, and different forms of confirmation.
 
 
 ---
