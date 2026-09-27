@@ -262,7 +262,7 @@ and uses 0.7 seconds of silence to determine when the user has finished.*
 
 *The conversation ends, and the user begins working.*
 
-## Process Description
+### Process Description
 
 I started by thinking about a situation where a voice interface would be more useful than a screen-based interaction. I wanted the device to support a simple task that could be completed through a short conversation, so I designed **Focus Buddy**, a desktop voice assistant that helps a user begin a focused work session.
 
@@ -278,7 +278,7 @@ The main design goal was to make the conversation feel short, calm, and responsi
 
 
 
-## Dialogue Script with Pauses
+### Dialogue Script with Pauses
 
 | Step | Speaker | Utterance / Action | Pause / Timing |
 |---|---|---|---|
@@ -304,6 +304,8 @@ The device then waits another **4 seconds**. If the user still does not respond,
 - **0.7 s endpointing threshold:** used to decide when the user has finished speaking.
 - **4 s no-response timeout:** used when the user has not started speaking at all.
 - The shorter threshold keeps the conversation responsive, while the longer timeout gives the user enough time to think before the device interrupts.
+
+
 ## E. Acting out the dialogue
 
 
