@@ -1,8 +1,8 @@
 # Chatterboxes
 
-**NAMES OF COLLABORATORS HERE**
+Collaborator: Jerry Lee
 
-[![Watch the video](https://user-images.githubusercontent.com/1128669/135009222-111fe522-e6ba-46ad-b6dc-d1633d21129c.png)](https://www.youtube.com/embed/Q8FWzLMobx0?start=19)
+[![Watch the video](https://user-images.githubusercontent.com/1128669/135009222-111fe522-e6ba-46ad-b6dc-d1633d21129c.png)](https://youtu.be/LZ0VJClIlRI?si=Yy84mcyVYuVV19mn)
 
 In this lab, we want you to design interaction with a speech-enabled device — something that listens and talks to you. This device can do anything *but* control lights (since we already did that in Lab 1). First, we want you to storyboard what you imagine the conversational interaction to be like. Then you will use wizarding techniques to elicit examples of what people might say, ask, or respond. We then want you to use the examples collected from at least two other people to inform the redesign of the device.
 
@@ -109,7 +109,7 @@ The demo script also shows `--output-raw`, which streams audio to the speaker as
 \*\***Write your own shell file to use your favorite of these TTS engines to have your Pi greet you by name.**\*\*
 (This shell file should be saved to your own repo for this lab.)
 
-\*\***Then answer: Is the same greeting, in these different voices, the same greeting? Describe one concrete way the voice changed what the utterance seemed to mean or who seemed to be speaking.**\*\*
+The same greeting did not feel exactly the same across the different voices. Festival sounded more human and friendly to me, while eSpeak sounded more robotic and mechanical. Even though the words were identical, the Festival voice made the greeting feel more like it was coming from a person rather than from a machine.
 
 ## B. Speech to Text
 
@@ -129,9 +129,34 @@ The transcript is not the interesting output here — the timings are. Run it ag
 
 Available sizes, smallest first: `tiny.en`, `base.en`, `small.en`, `medium.en`. The `.en` variants are English-only and faster than their multilingual counterparts at the same size.
 
-\*\***Record a few seconds of your own speech (`arecord -d 5 -f cd -c 1 -r 16000 test.wav`) and transcribe it with at least two model sizes. Report the real-time factor for each. At what point does the accuracy improvement stop being worth the delay, for a system that has to answer you?**\*\*
+### Speech-to-Text Model Comparison
 
-\*\***Write your own script that verbally asks for a numerical input (a phone number, zipcode, number of pets) and records the answer the respondent provides.**\*\* Numbers are a good stress test — transcription systems make characteristic errors on digit strings, and you will want to know what they are before you design around them.
+| Model | Audio Duration | Model Load | Transcription Time | Real-Time Factor | Transcription |
+|---|---:|---:|---:|---:|---|
+| `tiny.en` | 5.00 s | 1.64 s | 1.35 s | **0.27x** | Hello, my name is Dave and I'm testing speech recognition. |
+| `base.en` | 5.00 s | 2.37 s | 2.29 s | **0.46x** | Hello my name is Dave and I'm testing speech recognition. |
+| `small.en` | 5.00 s | 6.46 s | 6.17 s | **1.23x** | Hello, my name is Dave and I'm testing speech recognition. |
+
+All three models produced essentially the same correct transcription, but their response times were very different. `tiny.en` was the fastest with a real-time factor of **0.27x**, while `base.en` increased to **0.46x** without a noticeable improvement in accuracy. `small.en` was much slower at **1.23x**, meaning that transcribing five seconds of audio took longer than the audio itself.
+
+For a conversational system that needs to respond quickly, the additional delay of `small.en` is not worth it for this example because it did not provide any noticeable accuracy improvement. Based on this test, I would prefer `tiny.en` for responsiveness, or `base.en` if slightly more recognition capacity is needed while still keeping the latency reasonably low.
+
+### Numerical Input Test
+
+I wrote a script that verbally asks the user for their ZIP code using Festival, records the response for five seconds, and saves it as an audio file.
+
+For my test, I answered:
+
+`10044`
+
+| Model | Transcription | Real-Time Factor | Result |
+|---|---|---:|---|
+| `tiny.en` | `1 0 0 4 4` | **0.18x** | Correct |
+| `base.en` | `Go in 0044.` | **0.36x** | Incorrect |
+
+The `tiny.en` model correctly recognized all five digits, although it formatted them as separate numbers. In contrast, `base.en` incorrectly interpreted the beginning of the ZIP code as words and produced “Go in 0044.”
+
+This test showed that a larger speech-recognition model does not necessarily perform better on numerical input. Digit sequences can be ambiguous because the model may interpret similar sounds as words instead of individual numbers. For applications that require exact numerical input, such as ZIP codes or phone numbers, I would add confirmation or validation rather than relying on a single transcription.
 
 ## C. Turn-taking: knowing when someone has stopped talking
 
@@ -151,7 +176,15 @@ Speak, pause, and watch it transcribe. Now change the endpointing threshold — 
 (.venv) $ python listen.py --min-silence 1.5
 ```
 
-\*\***Try both extremes, and something in between. Describe what each one feels like to talk to. Note specifically: at 0.2s, what kinds of normal speech get cut off? At 1.5s, what does the delay make the system seem like?**\*\*
+### Turn-Taking Threshold Comparison
+
+| Minimum Silence | What It Felt Like |
+|---|---|
+| `0.2s` | The system responded very quickly, but it was too sensitive to short pauses. Normal hesitations, pauses between phrases, or taking a quick breath could be treated as the end of my turn, which caused one sentence to be split into multiple utterances. |
+| `0.7s` | This felt the most natural. It allowed short pauses without interrupting me, while still responding quickly enough after I finished speaking. |
+| `1.5s` | The system waited noticeably after I had already finished speaking. The delay made it feel slow and slightly uncertain, as if it was not sure whether I was done talking. |
+
+At `0.2s`, normal conversational pauses such as hesitation, thinking briefly between phrases, or taking a breath were often cut off. At `1.5s`, the system felt less responsive because there was a noticeable delay before it reacted. For normal conversation, a middle value such as `0.7s` felt like a better balance between avoiding interruptions and responding quickly.
 
 There is no correct value. A system that takes drink orders and a system that listens to someone think out loud want very different thresholds, and the right one depends on what your users are doing with their pauses.
 
@@ -165,21 +198,129 @@ There is no correct value. A system that takes drink orders and a system that li
 
 ## D. Storyboard
 
-Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.)
+### Device Concept: Focus Buddy
 
-\*\***Post your storyboard and diagram here.**\*\*
+Focus Buddy is a desktop voice assistant that helps users move from
+feeling distracted or overwhelmed to beginning a focused work session.
+Through a short conversation, it asks the user what they want to work
+on and how long they want to focus.
 
-Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses.
+### Storyboard
 
-\*\***Please describe and document your process.**\*\*
+![Focus Buddy Storyboard](./focus_buddy_storyboard.png)
 
-Your script should include the pauses. Where does your device wait, and for how long? You now know from Part C that this is a parameter you have to choose, not something that happens for free.
+The storyboard shows the interaction from the user's perspective. The
+user begins in a distracted state, activates Focus Buddy, identifies a
+task, chooses a duration, and then begins working after the device
+confirms the plan.
+
+### System Diagram
+
+![Focus Buddy System Diagram](./focus_buddy_system_diagram.png)
+
+The system diagram shows how the Raspberry Pi processes each user turn.
+The microphone captures the user's speech, Voice Activity Detection
+determines when the user has finished speaking, faster-whisper converts
+the audio into text, the dialogue logic selects the next response,
+Festival converts the response into speech, and the speaker plays it
+back to the user.
+
+### Imagined Dialogue
+
+**User:**  
+“Hey Focus Buddy.”
+
+**Focus Buddy:**  
+“Hi! What do you want to work on today?”
+
+*Focus Buddy waits up to 4 seconds for the user to begin speaking.
+After the user starts speaking, the system considers the turn complete
+after 0.7 seconds of silence.*
+
+**User:**  
+“I need to finish my machine learning homework.”
+
+**Focus Buddy:**  
+“Got it. How long do you want to focus?”
+
+*Focus Buddy again waits up to 4 seconds for the user to begin speaking
+and uses 0.7 seconds of silence to determine when the user has finished.*
+
+**User:**  
+“Twenty-five minutes.”
+
+**Focus Buddy:**  
+“Twenty-five minutes on your machine learning homework. Ready to start?”
+
+*Focus Buddy waits for confirmation.*
+
+**User:**  
+“Yes.”
+
+**Focus Buddy:**  
+“Great. Start now. I’ll stay out of your way.”
+
+*The conversation ends, and the user begins working.*
+
+### Process Description
+
+I started by thinking about a situation where a voice interface would be more useful than a screen-based interaction. I wanted the device to support a simple task that could be completed through a short conversation, so I designed **Focus Buddy**, a desktop voice assistant that helps a user begin a focused work session.
+
+The interaction is intentionally narrow. Instead of allowing an open-ended conversation, the device asks the user three questions: what they want to work on, how long they want to focus, and whether they are ready to begin. This keeps the interaction predictable and prevents the voice assistant itself from becoming another distraction.
+
+I also designed the timing based on what I observed in Part C. A `0.2s` silence threshold often cut off normal pauses, while `1.5s` made the system feel noticeably slow. I therefore chose **0.7 seconds of silence** as the endpointing threshold. This gives the user enough time to pause briefly while thinking, but still allows the system to respond quickly after the user finishes speaking.
+
+I also added a separate **4-second no-response timeout**. This is different from the 0.7-second endpointing threshold. The 0.7-second threshold determines when the system decides that the user has finished an utterance, while the 4-second timeout determines how long the device waits when the user has not started answering at all.
+
+If the user does not respond within four seconds, the device gives one short follow-up prompt. If there is still no response after another four seconds, the interaction ends instead of repeatedly interrupting the user.
+
+The main design goal was to make the conversation feel short, calm, and responsive. The device helps the user move from hesitation to a concrete task and time commitment, then stops talking so the user can begin working.
+
+
+
+### Dialogue Script with Pauses
+
+| Step | Speaker | Utterance / Action | Pause / Timing |
+|---|---|---|---|
+| 1 | User | “Focus Buddy.” | — |
+| 2 | Device | “What do you want to work on?” | Wait for user speech |
+| 3 | User | “I need to finish my machine learning homework.” | Device ends the turn after **0.7 s of silence** |
+| 4 | Device | “Got it. How long do you want to focus?” | Wait for user speech |
+| 5 | User | “Twenty-five minutes.” | Device ends the turn after **0.7 s of silence** |
+| 6 | Device | “Twenty-five minutes on your machine learning homework. Ready to start?” | Wait for user speech |
+| 7 | User | “Yes.” | Device ends the turn after **0.7 s of silence** |
+| 8 | Device | “Great. Start now. I’ll stay out of your way.” | Conversation ends |
+
+### No-response behavior
+
+If the user does not begin answering within **4 seconds**, the device says:
+
+> “Take your time. You can answer whenever you’re ready.”
+
+The device then waits another **4 seconds**. If the user still does not respond, it ends the interaction and returns to its idle state.
+
+### Timing Decisions
+
+- **0.7 s endpointing threshold:** used to decide when the user has finished speaking.
+- **4 s no-response timeout:** used when the user has not started speaking at all.
+- The shorter threshold keeps the conversation responsive, while the longer timeout gives the user enough time to think before the device interrupts.
+
 
 ## E. Acting out the dialogue
 
+
+https://github.com/user-attachments/assets/4c343ec8-a82f-4218-b551-ea6107e6b687
+
+
 Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing. Please record this interaction (for example, using Zoom's record feature).
 
-\*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
+The acted-out dialogue followed the same overall structure I had imagined: the device asked for a task, asked for a duration, and then confirmed whether the user was ready to begin. However, the real interaction was less clean and predictable than my scripted version.
+
+The participant hesitated and repeated “I guess I want” before describing the task. The task itself was also less specific than the answer in my original dialogue. My original design assumed that the user would immediately provide one clear task, such as “I need to finish my machine learning homework.” In the acted interaction, Focus Buddy should probably have asked a clarification question, such as “What subject would you like to study?” Instead, I continued to the duration question, which caused the final confirmation to use the generic phrase “your task” rather than repeating a meaningful task name.
+
+The duration question worked as expected because the participant gave a clear answer of thirty minutes. The final confirmation was also different from my imagined dialogue. Rather than simply saying “Yes,” the participant said, “Okay, please start.” This suggests that the system should recognize several natural forms of confirmation, including “yes,” “okay,” “sure,” and “please start.”
+
+The participant answered every prompt, so the four-second no-response behavior was not triggered. Because I acted as the device manually, the 0.7-second endpointing threshold was approximated rather than measured by the system. Overall, the basic conversation flow worked, but the test showed that the redesigned version should better handle hesitation, repeated words, vague task descriptions, and different forms of confirmation.
 
 
 ---
