@@ -299,6 +299,9 @@ The device then waits another **4 seconds**. If the user still does not respond,
 - The shorter threshold keeps the conversation responsive, while the longer timeout gives the user enough time to think before the device interrupts.
 ## E. Acting out the dialogue
 
+
+![Yuqi's Record](./Yuqi‘s_Record.m4a)
+
 Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing. Please record this interaction (for example, using Zoom's record feature).
 
 The acted-out dialogue followed the same overall structure I had imagined: the device asked for a task, asked for a duration, and then confirmed whether the user was ready to begin. However, the real interaction was less clean and predictable than my scripted version.
