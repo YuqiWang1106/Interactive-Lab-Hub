@@ -198,11 +198,62 @@ There is no correct value. A system that takes drink orders and a system that li
 
 ## D. Storyboard
 
-Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.)
+### Device Concept: Focus Buddy
 
-\*\***Post your storyboard and diagram here.**\*\*
+Focus Buddy is a desktop voice assistant that helps users move from
+feeling distracted or overwhelmed to beginning a focused work session.
+Through a short conversation, it asks the user what they want to work
+on and how long they want to focus.
 
-Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses.
+### Storyboard
+
+![Focus Buddy Storyboard](images/focus_buddy_storyboard.png)
+
+The storyboard shows the interaction from the user's perspective. The
+user begins in a distracted state, activates Focus Buddy, identifies a
+task, chooses a duration, and then begins working after the device
+confirms the plan.
+
+### System Diagram
+
+![Focus Buddy System Diagram](images/focus_buddy_system_diagram.png)
+
+The system diagram shows how the Raspberry Pi processes each user turn.
+The microphone captures the user's speech, Voice Activity Detection
+determines when the user has finished speaking, faster-whisper converts
+the audio into text, the dialogue logic selects the next response,
+Festival converts the response into speech, and the speaker plays it
+back to the user.
+
+### Imagined Dialogue
+
+**User:**  
+“Hey Focus Buddy.”
+
+**Focus Buddy:**  
+“Hi! What do you want to work on today?”
+
+*Focus Buddy waits for the user to begin speaking. If the user begins
+speaking, the system considers the turn complete after 0.7 seconds of
+silence.*
+
+**User:**  
+“I need to finish my machine learning homework.”
+
+**Focus Buddy:**  
+“Got it. How long do you want to focus?”
+
+*Focus Buddy waits for the next response and again uses 0.7 seconds of
+silence to determine when the user has finished speaking.*
+
+**User:**  
+“Twenty-five minutes.”
+
+**Focus Buddy:**  
+“Great. I’ll set a twenty-five-minute focus session for your machine
+learning homework. Start now. I’ll stay out of your way.”
+
+*The conversation ends, and the user begins working.*
 
 ## Process Description
 
