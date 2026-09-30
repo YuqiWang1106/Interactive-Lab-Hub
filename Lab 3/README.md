@@ -336,6 +336,12 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 3. Make a new storyboard, diagram and/or script based on these reflections.
 4. (optional) Integrate [input devices](inputs.md) in the system
 
+In Part 1, the participant hesitated and described a vague task. Focus Buddy moved directly to the duration question, so its final confirmation could only say “your task.” I will change the first prompt to “What is one specific thing you want to work on?” If the answer is still vague, the device will ask one clarification question before asking for a duration.
+
+The participant also said “Okay, please start” instead of a simple “yes.” The redesigned interaction will accept natural confirmations such as “yes,” “okay,” and “please start,” and will offer a way to correct the task or duration before starting.
+
+I will keep the 0.7-second silence threshold because it felt more natural than 0.2 or 1.5 seconds in Part 1. The original four-second wait for someone to begin answering was not triggered in that test. I will try six seconds, give one gentle reminder, and observe whether this feels too short or too long in Part 2.
+
 ## Prototype your system
 
 The system should:
