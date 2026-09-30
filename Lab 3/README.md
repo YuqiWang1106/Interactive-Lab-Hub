@@ -351,6 +351,16 @@ The system should:
 
 *Document how the system works.*
 
+Focus Buddy is a Wizard-of-Oz speech prototype built around a Raspberry Pi. The participant speaks to a USB microphone connected to the Pi. The participant does not operate the controller.
+
+1. The wizard starts the interaction from an SSH terminal. Focus Buddy speaks a prompt asking for one specific task.
+2. The MiniPiTFT shows when the device is speaking, listening, or processing. While it shows **LISTENING**, the Pi records the participant’s speech.
+3. Voice activity detection ends a spoken turn after 0.7 seconds of silence. Faster-whisper produces a suggested transcript.
+4. The hidden wizard reads the transcript in the terminal and chooses the next action: clarify the task, ask for a duration, repeat a question, confirm the plan, or start the focus session. The wizard can correct the task wording or duration before the Pi repeats it.
+5. Piper generates the spoken response. After the participant confirms the task and duration, the screen shows the focus task and remaining time.
+
+The microphone provides the sensor input, and speaking is required to move through the interaction. The wizard makes the dialogue decisions; speech capture, transcription, playback, and screen feedback run on the Pi.
+
 *Include videos or screencaptures of both the system and the controller.*
 
 ## Test the system
