@@ -351,15 +351,13 @@ The system should:
 
 *Document how the system works.*
 
-Focus Buddy is a Wizard-of-Oz speech prototype built around a Raspberry Pi. The participant speaks to a USB microphone connected to the Pi. The participant does not operate the controller.
-
-1. The wizard starts the interaction from an SSH terminal. Focus Buddy speaks a prompt asking for one specific task.
-2. The MiniPiTFT shows when the device is speaking, listening, or processing. While it shows **LISTENING**, the Pi records the participant’s speech.
-3. Voice activity detection ends a spoken turn after 0.7 seconds of silence. Faster-whisper produces a suggested transcript.
-4. The hidden wizard reads the transcript in the terminal and chooses the next action: clarify the task, ask for a duration, repeat a question, confirm the plan, or start the focus session. The wizard can correct the task wording or duration before the Pi repeats it.
-5. Piper generates the spoken response. After the participant confirms the task and duration, the screen shows the focus task and remaining time.
-
-The microphone provides the sensor input, and speaking is required to move through the interaction. The wizard makes the dialogue decisions; speech capture, transcription, playback, and screen feedback run on the Pi.
+Focus Buddy is a Wizard-of-Oz speech prototype running on a Raspberry Pi. The participant presses the SparkFun Qwiic Button to begin, then speaks to the Pi’s USB microphone. The button is an I²C input sensor, and its built-in LED provides state feedback.
+1. In the READY state, the Qwiic Button LED pulses slowly. The participant presses the red button to start the interaction.
+2. Focus Buddy speaks a prompt asking for one specific task. The MiniPiTFT shows SPEAKING while the device talks and LISTENING while it captures the participant’s answer. The button LED stays on while listening.
+3. Silero voice activity detection ends each spoken turn after 0.7 seconds of silence. Faster-whisper creates a suggested transcript, and the screen and button LED show PROCESSING while the system handles the answer.
+4. A hidden wizard reads the transcript in the SSH terminal and chooses the next action: clarify the task, ask for a duration, repeat a question, confirm the plan, or start the focus session. The wizard can enter corrected task wording or duration.
+5. Piper speaks the selected response through the Pi’s audio output. After the participant confirms the task and duration, the screen shows the task and remaining focus time.
+Speaking is required to answer the device’s prompts. The microphone and Qwiic Button provide sensor inputs. Speech capture, transcription, audio playback, screen feedback, and button LED control run on the Pi; the wizard makes the dialogue decisions.
 
 *Include videos or screencaptures of both the system and the controller.*
 
