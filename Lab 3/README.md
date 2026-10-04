@@ -351,13 +351,75 @@ The system should:
 
 *Document how the system works.*
 
-Focus Buddy is a Wizard-of-Oz speech prototype running on a Raspberry Pi. The participant presses the SparkFun Qwiic Button to begin, then speaks to the Pi’s USB microphone. The button is an I²C input sensor, and its built-in LED provides state feedback.
-1. In the READY state, the Qwiic Button LED pulses slowly. The participant presses the red button to start the interaction.
-2. Focus Buddy speaks a prompt asking for one specific task. The MiniPiTFT shows SPEAKING while the device talks and LISTENING while it captures the participant’s answer. The button LED stays on while listening.
-3. Silero voice activity detection ends each spoken turn after 0.7 seconds of silence. Faster-whisper creates a suggested transcript, and the screen and button LED show PROCESSING while the system handles the answer.
-4. A hidden wizard reads the transcript in the SSH terminal and chooses the next action: clarify the task, ask for a duration, repeat a question, confirm the plan, or start the focus session. The wizard can enter corrected task wording or duration.
-5. Piper speaks the selected response through the Pi’s audio output. After the participant confirms the task and duration, the screen shows the task and remaining focus time.
-Speaking is required to answer the device’s prompts. The microphone and Qwiic Button provide sensor inputs. Speech capture, transcription, audio playback, screen feedback, and button LED control run on the Pi; the wizard makes the dialogue decisions.
+### How Focus Buddy works
+
+Focus Buddy is a Wizard-of-Oz speech prototype running on a Raspberry Pi. The participant presses and releases a **SparkFun Qwiic Button** to begin, then speaks into a USB microphone. A hidden wizard operates the controller through an SSH terminal. The participant does not operate the controller.
+
+1. **Ready to begin.** The Pi loads its speech models and checks the selected audio formats before displaying READY. The Qwiic Button's built-in LED pulses slowly. The participant presses and releases the red button to start.
+2. **Speaking and listening.** Piper generates a spoken question asking for one specific task. The MiniPiTFT shows SPEAKING during playback and LISTENING once the microphone stream is open. The button's central LED stays on while listening.
+3. **Speech processing.** The USB microphone captures audio at 48,000 Hz, which is continuously converted to 16,000 Hz for Silero VAD and faster-whisper. VAD ends a turn after 0.7 seconds of silence. The screen shows PROCESSING and the central LED pulses faster while the system transcribes the answer and waits for the wizard's next action.
+4. **Wizard control.** The wizard reads the suggested transcript and selects a numbered action: accept or clarify the task, repeat a question, accept a duration, change the plan, or start the session. The wizard enters the final task wording and duration, so recognition errors can be corrected before the Pi repeats them. Natural confirmations such as “yes” or “please start” are interpreted by the wizard.
+5. **Confirmation and focus.** Piper speaks the selected response through the USB speaker. Its audio is resampled to the speaker's supported 48,000 Hz rate. After the participant confirms the plan and the wizard selects Start, the screen shows the task and a separate countdown. The button LED is off during focus.
+
+The microphone and Qwiic Button provide sensor inputs, and speaking is required to answer the device's prompts. Speech capture, transcription, playback, screen feedback, and LED control run on the Pi; a person makes the dialogue decisions.
+
+### State feedback and timing
+
+| State | MiniPiTFT | Qwiic Button central LED |
+|---|---|---|
+| BOOTING | Loading; please wait | Off |
+| READY | Press red button | Slow pulse |
+| SPEAKING | Device prompt | Off |
+| LISTENING | Speak now | On |
+| PROCESSING | Please wait | Faster pulse |
+| FOCUS | Task and remaining time | Off |
+
+The board's small PWR light is a power indicator; the programmable status light is inside the red button. The button communicates over I2C at address `0x6f`.
+
+If a participant does not start answering within six seconds, the device gives one reminder and waits again. If there is still no answer, the interaction ends. A listening turn is capped at thirty seconds to prevent continuous noise from keeping it open indefinitely. Empty transcriptions also receive one retry. The wizard can end the interaction with `q` at a menu or Ctrl+C.
+
+Each launch runs one interaction. On completion, cancellation, or error, the program releases its audio and display resources and turns off the central LED and display backlight. The wizard runs the command again for the next participant.
+
+### Code and running the prototype
+
+Implementation: [focus_buddy_woz.py](./focus_buddy_woz.py), version `2026.10.04.1`.
+
+The following commands run in the Raspberry Pi terminal. They use the existing Lab 3 virtual environment and speech models from Part 1. For this Python 3.11 setup, install the additional display, button, and audio-conversion dependencies if needed:
+
+```bash
+cd ~/Interactive-Lab-Hub/"Lab 3"
+source .venv/bin/activate
+python -m pip install scipy adafruit-blinka adafruit-circuitpython-rgb-display pillow sparkfun-qwiic-button lgpio
+```
+
+The required model files are `models/silero_vad.onnx`, `voices/en_US-lessac-medium.onnx`, and its accompanying `.onnx.json` configuration. The Part 1 setup script downloads these resources; faster-whisper also needs its `tiny.en` model cache or network access for the initial download.
+
+Check the audio device list:
+
+```bash
+python focus_buddy_woz.py --list-devices
+```
+
+In the device list captured for this setup, the USB PnP microphone is PortAudio device `1` and the UACDemo speaker is device `0`. These indexes may change after reconnecting devices. They are different from ALSA card numbers. With those indexes confirmed:
+
+```bash
+python focus_buddy_woz.py --check-audio --input-device 1 --output-device 0
+sudo systemctl stop piscreen.service
+python focus_buddy_woz.py --screen-test --qwiic-button
+python focus_buddy_woz.py --qwiic-button --input-device 1 --output-device 0
+```
+
+`--check-audio` validates the selected formats without recording or playing sound. The display test cycles through the five main interaction states and exits. The final command launches the actual speech interaction. The existing `piscreen.service` is stopped to make the MiniPiTFT available to Focus Buddy.
+
+Wait for READY, press and release the button, and answer each question when the screen says LISTENING. At `Wizard choice:`, type a menu number and press Enter. Accepting a task also requires its final wording; accepting a duration requires an integer from 1 to 180. For a short functional check, request one minute and let the countdown finish.
+
+After obtaining permission to store interaction text, optional JSONL logging can be enabled with `--log /home/pi/focus_buddy_session.jsonl`. The log stores timestamps, elapsed seconds, transcriptions, states, and wizard decisions; it does not store raw audio.
+
+To restore the original Pi status screen after finishing:
+
+```bash
+sudo systemctl start piscreen.service
+```
 
 *Include videos or screencaptures of both the system and the controller.*
 
