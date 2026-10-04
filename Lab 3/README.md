@@ -244,6 +244,7 @@ Each launch runs one interaction. On completion, cancellation, or error, the pro
 ![4](./4.jpg)
 ![5](./5.jpg)
 ![6](./6.jpg)
+![7](./7.jpg)
 
 ## Test the system
 
