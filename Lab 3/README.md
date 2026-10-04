@@ -240,7 +240,12 @@ If a participant does not start answering within six seconds, the device gives o
 
 Each launch runs one interaction. On completion, cancellation, or error, the program releases its audio and display resources and turns off the central LED and display backlight. The wizard runs the command again for the next participant.
 
-*Include videos or screencaptures of both the system and the controller.*
+(./1.png)
+(./2.png)
+(./3.png)
+(./4.png)
+(./5.png)
+(./6.png)
 
 ## Test the system
 
