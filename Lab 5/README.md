@@ -217,10 +217,101 @@ Things in the [Ollama API](https://github.com/ollama/ollama/blob/main/docs/api.m
 A 0.8B model is slow and sometimes wrong. It will invent events that are not in the data and agree with a wrong premise. Give it the data, keep its job narrow, and decide what the device does when the model is unsure.
 
 \*\*\***Ask Qwen three questions to answer. Paste the questions, the answers and how long each took. Try one of them with `qwen3:0.6b` and compare.**\*\*\*
+## Part D. Reason: Qwen on the Pi with Ollama
 
-<details>
-  Q&A here
-</details>
+I ran three questions with `qwen3.5:0.8b` using `ask_qwen.py`, then repeated the first question with `qwen3:0.6b`. Thinking was disabled. The script requested at most three short sentences and set a maximum of 120 generated tokens. The times below are the elapsed request times reported by the script.
+
+### Question 1: Roosevelt Island history
+
+**Question:** Tell me a bit about the history of Roosevelt Island.
+
+**Model:** `qwen3.5:0.8b`  
+**Elapsed time:** 12.9 seconds
+
+**Original answer:**
+
+> Roosevelt Island was originally built as a private residence for President Franklin D. Roosevelt, who lived there from 1935 to 1945. It is now a historic site and one of the most popular tourist destinations in New York City. The island's history includes its original construction by the Rockefeller family and its current status as a museum dedicated to FDR's life and work.
+
+**Correctness check:**
+
+The answer contains major factual errors. Roosevelt Island was not built as FDR?s private residence, and the claim that he lived there from 1935 to 1945 is incorrect. His principal residence was Springwood in Hyde Park, New York. The Rockefeller construction story and the description of the entire island as an FDR museum are also inconsistent with its documented history. [FDR Presidential Library](https://www.fdrlibrary.org/roosevelt-homes)
+
+The correct historical reference points are:
+
+- The island was formerly called **Blackwell?s Island**.
+- It became **Welfare Island in 1921**.
+- It was renamed **Roosevelt Island in 1973**.
+- Cornell Tech opened its Roosevelt Island campus in **2017**.
+
+The first three facts are documented by the [National Park Service](https://www.nps.gov/places/blackwell-s-island-new-york-city.htm), and the campus opening is documented by [Cornell Tech](https://tech.cornell.edu/news/cornell-tech-campus-opens-on-roosevelt-island-marking-transformational-mile/). The model mentioned none of these four reference facts.
+
+### Question 2: Can object detection establish whether someone is asleep?
+
+**Question:** Can a person's bounding box and confidence score alone tell whether they are asleep? Explain briefly.
+
+**Model:** `qwen3.5:0.8b`  
+**Elapsed time:** 7.1 seconds
+
+**Original answer:**
+
+> Yes, but the system cannot definitively determine if someone is asleep solely based on these metrics. The user must also consider their physical state, such as breathing patterns or heart rate to confirm sleep onset.
+
+**Correctness check:**
+
+The answer is internally contradictory: it begins with ?Yes,? but immediately explains that these metrics alone cannot determine whether someone is asleep. The direct answer should be **No**.
+
+A bounding box describes an object?s location and size, while the confidence score concerns its detected class. A high confidence score for ?person? is not a probability that the person is asleep. These outputs alone do not establish sleep state. [Ultralytics object detection documentation](https://docs.ultralytics.com/tasks/detect)
+
+The model also mentions breathing and heart rate, but those signals were not measured by this experiment. Its suggestion should not be interpreted as a validated sleep-detection method.
+
+### Question 3: Describe an image
+
+**Question:** How many people are in this photo, and what are they wearing?
+
+**Input:** The same `zidane.jpg` image used in Part A, supplied with `--image zidane.jpg`.
+
+**Model:** `qwen3.5:0.8b`  
+**Elapsed time:** 116.0 seconds
+
+**Original answer:**
+
+> There are two men in the photo. The man on the left is bald and wearing a black suit with a white shirt and black tie. The man on the right has gray hair and is also wearing a black suit with a white shirt and dark tie.
+
+**Correctness check:**
+
+The main description matches the image. There are two people, both wearing dark suits, light-colored shirts, and ties. The descriptions of the left person?s bald head and the right person?s gray hair also match the visible image.
+
+The model answered the requested count and clothing questions reasonably well, although precise clothing colors depend on lighting. This image request took 116.0 seconds, considerably longer than either text-only request in this run.
+
+### Comparison with `qwen3:0.6b`
+
+I repeated Question 1 with the smaller model using exactly the same question.
+
+**Question:** Tell me a bit about the history of Roosevelt Island.
+
+**Model:** `qwen3:0.6b`  
+**Elapsed time:** 6.9 seconds
+
+**Original answer:**
+
+> Roosevelt Island is a small island located in the Pacific Ocean, off the coast of the state of New York. It was originally a military base during World War II, and it became a significant site for the United States Navy. The island was later used as a research and development center for the United States Department of Defense. Today, it remains a popular destination for outdoor activities and is a symbol of the United States' commitment to the Pacific.
+
+**Correctness check:**
+
+The location is incorrect: Roosevelt Island is in New York City?s **East River**, not the Pacific Ocean. The military-base, Navy, and Department of Defense narrative is unsupported by the official historical accounts, which describe institutional uses including prisons and hospitals. [National Park Service](https://www.nps.gov/places/blackwell-s-island-new-york-city.htm), [New York City historical resources report](https://www.nyc.gov/html/oec/downloads/pdf/dme_projects/12DME004M/DEIS/12DME004M_DEIS_07_Historic.pdf)
+
+This answer also contains four sentences, exceeding the script?s request for at most three.
+
+| Aspect | `qwen3.5:0.8b` | `qwen3:0.6b` |
+|---|---|---|
+| Time for the same history question | 12.9 seconds | 6.9 seconds |
+| Main factual problems | Invented FDR residence and island history | Incorrect location and unsupported military history |
+| Answer length | 3 sentences | 4 sentences |
+| Covered the four reference facts | 0 of 4 | 0 of 4 |
+
+The smaller model completed this request **6.0 seconds sooner**, approximately **46.5% less elapsed time**. However, both models produced unreliable historical answers. The larger model followed the sentence limit, while the smaller one did not.
+
+These are single-request measurements, not a controlled performance benchmark. Model loading, caching, and answer length can affect elapsed time. For my observant system, these results suggest keeping model questions narrow, supplying relevant observations, and checking unsupported claims before using an answer to trigger an action.
 
 
 ## Part E. 
